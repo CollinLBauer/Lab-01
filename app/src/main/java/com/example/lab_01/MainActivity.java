@@ -23,12 +23,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startB = (Button) this.findViewById(R.id.button);
+        startB = this.findViewById(R.id.button);
         startB.setOnClickListener(this);
-        text = (TextView) this.findViewById((R.id.timer));
-        timeElapsedView = (TextView) this.findViewById(R.id.timeElapsed);
+        text = this.findViewById((R.id.timer));
+        timeElapsedView = this.findViewById(R.id.timeElapsed);
+        timeElapsedView.setText(String.format(getString(R.string.timeElapsed), 0));
         countDownTimer = new MyCountDownTimer(startTime, interval);
-        text.setText(text.getText() + String.valueOf(startTime));
+        text.setText(String.format(getString(R.string.timer), startTime));
     }
 
     @Override
@@ -36,12 +37,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(!timerHasStarted) {
             countDownTimer.start();
             timerHasStarted = true;
-            startB.setText("Start");
+            startB.setText(getString(R.string.startLabel));
         }
         else {
             countDownTimer.cancel();
             timerHasStarted = false;
-            startB.setText("Reset");
+            startB.setText(getString(R.string.resetLabel));
 
         }
     }
@@ -52,14 +53,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         public void onFinish() {
-            text.setText("Time's up!");
-            timeElapsedView.setText("Time Elapsed: " + String.valueOf(startTime));
+            text.setText(getString(R.string.timerFinish));
+            timeElapsedView.setText(String.format(getString(R.string.timeElapsed), startTime)); //startTime
         }
 
         public void onTick(long millisUntilFinished) {
-            text.setText("Time remain: " + millisUntilFinished);
+            text.setText(String.format(getString(R.string.timeRemaining), millisUntilFinished));
             timeElapsed = startTime - millisUntilFinished;
-            timeElapsedView.setText("Time Elapsed: " + String.valueOf(timeElapsed));
+            timeElapsedView.setText(String.format(getString(R.string.timeElapsed), timeElapsed));
         }
     }
 }

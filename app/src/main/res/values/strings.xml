@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Lab-01</string>
+    <string name="startLabel">Start</string>
+    <string name="resetLabel">Reset</string>
+    <string name="timerFinish">Time\'s up!</string>
+    <string name="timeElapsed">Time Elapsed: %d</string>
+    <string name="timeRemaining">Time remain: %d</string>
+    <string name="timer">Time: %d</string>
 </resources>
